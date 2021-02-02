@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %} {% block title %}New User{% endblock %} {% block
+body %}
+<div class="container col-md-5 mt-3">
+  <h3 class="text-center pb-5">Formulaire d'embauche</h3>
+  {{ form_start(form) }}
+  <div class="row">
+    <div class="col-md-6">
+      {{ form_row(form.prenom) }}
+    </div>
+    <div class="col-md-6">
+      {{ form_row(form.nom) }}
+    </div>
+  </div>
+  {{ form_row(form.phone) }}
+  <div class="row">
+    <div class="col-md-6">
+      {{ form_row(form.adresse) }}
+    </div>
+    <div class="col-md-6">
+      {{ form_row(form.email) }}
+    </div>
+  </div>
+  {{ form_row(form.username) }}
+  <div class="row">
+    <div class="col-md-6">
+      {{ form_row(form.password) }}
+    </div>
+    <div class="col-md-6">
+      {{ form_row(form.passwordConfirm) }}
+    </div>
+  </div>
+  <button type="submit" class="btn btn-violet">Embaucher</button>
+  {{ form_end(form) }}
+  <br />
+  <a href="{{ path('user_index') }}" class="btn btn-yellow">Aller à la liste</a>
+</div>
+
+{% endblock %}

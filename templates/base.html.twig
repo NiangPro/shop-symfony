@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Niang&Famille!{% endblock %}</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/simple-sidebar.css">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+
+        <div class="d-flex" id="wrapper">
+          {% if app.user %}
+            <!-- Sidebar -->
+            <div class="border-right " id="sidebar-wrapper">
+              <div class="sidebar-heading">OPTIONS</div>
+              <div class="list-group list-group-flush ">
+                <a href="{{ path('monnaie') }}" class="list-group-item list-group-item-action {% if current_menu == 'monnaie' %} active {% endif %} ">Monnaies</a>
+                <a href="{{ path('emprunt') }}" class="list-group-item list-group-item-action {% if current_menu == 'emprunt' %} active {% endif %}">Emprunts</a>
+                <a href="{{ path('search') }}" class="list-group-item list-group-item-action {% if current_menu == 'search' %} active {% endif %}">
+                  Recherche simple
+                </a>
+                <a href="{{ path('boutique') }}" class="list-group-item list-group-item-action {% if current_menu == 'boutique' %} active {% endif %}">
+                  Boutique
+                </a>
+                <a href="" class="btn btn-outline-warning list-group-item list-group-item-action">Profile</a>
+              </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
+            {% endif %}
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+        
+              <nav class="navbar navbar-expand-lg border-bottom" style="background-color: blueviolet !important;">
+                <button class="btn btn-dark" id="menu-toggle">Niang&Famille</button>
+        
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto mt-2 mt-lg-0" >
+                    {% if not app.user %}
+                    <li class="nav-item {% if current_menu == 'login' %} active {% endif %}">
+                      <a class="nav-link  text-dark" href="{{ path("login") }}">Connexion</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item {% if current_menu == 'home' %} active {% endif %} ">
+                      <a class="nav-link  text-dark " href="{{ path("home") }}">Accueil <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown {% if current_menu == 'add' %} active {% endif %}">
+                      <a class="nav-link dropdown-toggle   text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Ajouter
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('product_new') }}">Ajout Produit</a>
+                        <a class="dropdown-item" href="{{ path('client_new') }}">Ajout Client</a>
+                        <a class="dropdown-item" href="{{ path('vente_new') }}">Ajout Vente</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('user_new') }}">Ajout Employé</a>
+
+                      </div>
+                    </li>
+                    <!-- affichage -->
+                  <li class="nav-item dropdown {% if current_menu == 'list' %} active {% endif %}">
+                    <a class="nav-link dropdown-toggle   text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      Afficher
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{ path('product_index') }}">Liste Produit</a>
+                      <a class="dropdown-item" href="{{ path('client_index') }}">Liste Client</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{{ path('vente_index') }}">Liste Ventes</a>
+                      <a class="dropdown-item" href="{{ path('user_index') }}">Liste Utilisateur</a>
+                    </div>
+                  </li>
+                    <li class="nav-item">
+                      <a class="nav-link  text-dark" href="{{ path("logout") }}">Déconnexion</a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </nav>
+              <!-- /#corps du programme -->
+              <div class="container-fluid">
+                {% block body %}{% endblock %}
+            </div> 
+            </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+              
+      
+        {% block javascripts %}{% endblock %}
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/bootstrap.bundle.min.js"></script>
+        <!-- Menu Toggle Script -->
+        <script>
+            $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+            });
+        </script>
+    </body>
+</html>

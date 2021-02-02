@@ -1,0 +1,121 @@
+{% extends "base.html.twig" %} {% block body %}
+<div class="container mt-3">
+  <div class="row gutters">
+    <!-- RECHERCHE CLIENT -->
+    <div class="col-md-3">
+      <h3>Recherche Client</h3>
+      {{ form_start(form_client) }}
+      {{ form_row(form_client.nom) }}
+      <button type="submit" class="btn btn-violet">Rechercher</button>
+      {{ form_end(form_client) }}
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-2"></div>
+    <!-- RECHERCHE PRODUIT -->
+    <div class="col-md-4">
+      <h3>Recherche Produit</h3>
+      {{ form_start(form_product) }}
+      {{ form_row(form_product.libelle) }}
+      <button type="submit" class="btn btn-yellow">Rechercher</button>
+      {{ form_end(form_product) }}
+    </div>
+  </div>
+  <div class="row gutters mt-2">
+    <!-- Résultat de la recherche client -->
+    {% if app.request.method == 'POST' and typeSearch == "client" %}
+    <div class="col-md-5">
+      <h1 class="text-center">Résultat de la recherche</h1>
+      {% if clients | length > 0%}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for client in clients %}
+          <tr
+            class="{% if client.emprunt > 0 %} bg-success text-white {% elseif client.monnaie > 0 %} bg-warning {% endif %}"
+          >
+            <td>{{ client.prenom }}</td>
+            <td>{{ client.nom }}</td>
+            <td>
+              <a
+                href="{{ path('client_show', { id: client.id }) }}"
+                class="btn btn-violet"
+                >Afficher</a
+              >
+              <a
+                href="{{ path('client_edit', { id: client.id }) }}"
+                class="btn btn-yellow"
+                >Modifier</a
+              >
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <div class="alert alert-warning">
+        Aucun client trouvé
+        <a href="{{ path('client_new') }}" class="btn btn-violet">
+          Cliquez ici pour l'ajouter</a
+        >
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Résultat de la recherche client -->
+    {% if app.request.method == 'POST' and typeSearch == "produit" %}
+    <div class="col-md-7 ml-auto">
+      <h1>Résultat de la recherche</h1>
+      {% if products | length > 0%}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Catégorie</th>
+            <th>Désignation</th>
+            <th>Prix unitaire</th>
+            <th>actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <td>{{ product.libelle }}</td>
+            <td>{{ product.designation }}</td>
+            <td>{{ product.formattedPrice }}</td>
+            <td>
+              <a
+                href="{{ path('product_show', { id: product.id }) }}"
+                class="btn btn-violet"
+                >Afficher</a
+              >
+              <a
+                href="{{ path('product_edit', { id: product.id }) }}"
+                class="btn btn-yellow"
+                >Modifier</a
+              >
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="5">Pas de produit</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <div class="alert alert-warning">
+        Aucun produit trouvé
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

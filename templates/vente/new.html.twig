@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %} {% block title %}Nouvelle Vente{% endblock %} {%
+block body %}
+<div class="container col-md-5 mt-4">
+  {% if status == "existe" %}
+  <div class="alert alert-success">
+    Il y'a déjà une vente en cours
+    <a href="{{ path('boutique') }}" class="btn btn-violet"
+      >Cliquez pour consulter</a
+    >
+  </div>
+  {% elseif status == "aucun" %}
+  <h3>Ajout d'une nouvelle Vente</h3>
+
+  {{ include("vente/_form.html.twig") }}
+  {% endif %}
+</div>
+{% endblock %}

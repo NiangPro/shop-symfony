@@ -1,0 +1,126 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/templates/simple-sidebar)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+
+#wrapper {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  background-color: blueviolet;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+  background: blueviolet;
+  transition: 0.5s;
+}
+
+.dropdown-item {
+  color: yellow;
+}
+
+.dropdown-item:hover {
+  background: yellow;
+  color: blueviolet !important;
+}
+
+.nav-link:hover {
+  background: yellow;
+  color: blueviolet;
+  border-top-left-radius: 20px;
+}
+
+.navbar-nav li a {
+  color: yellow !important;
+  font-weight: bold;
+}
+
+#menu-toggle {
+  color: blueviolet !important;
+  font-weight: bold !important;
+  font-family: constanian !important;
+}
+
+#menu-toggle {
+  background-color: yellow !important;
+}
+
+.list-group-item {
+  color: yellow;
+  background-color: blueviolet;
+  font-weight: bold;
+}
+
+.list-group-item:hover {
+  color: blueviolet;
+  background-color: yellow;
+  font-weight: bold;
+}
+
+.sidebar-heading {
+  background: radial-gradient(blueviolet, yellow);
+  color: yellow;
+  text-align: center;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+.btn-yellow {
+  background-color: yellow !important;
+  color: blueviolet !important;
+}
+
+.btn-violet {
+  background-color: blueviolet !important;
+  color: yellow !important;
+}
+
+.active {
+  background-color: yellow !important;
+  color: blueviolet !important;
+  border-top-left-radius: 20px !important;
+}
+
+.active .nav-link {
+  color: blueviolet !important;
+}

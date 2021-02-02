@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %} {% block title %}Client index{% endblock %} {%
+block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h1 class="text-center">Liste des emprunts</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Tel</th>
+            <th>Emprunt</th>
+            <th>actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if clients | length > 0%} {% for client in clients %}
+          <tr>
+            <td>{{ client.prenom }}</td>
+            <td>{{ client.nom }}</td>
+            <td>{{ client.phone }}</td>
+            <td>{{ client.emprunt }} F cfa</td>
+            <td>
+              <a
+                href="{{ path('client_show', { id: client.id }) }}"
+                class="btn btn-violet"
+                >Afficher</a
+              >
+              <a
+                href="{{ path('client_edit', { id: client.id }) }}"
+                class="btn btn-yellow"
+                >Modifier</a
+              >
+            </td>
+          </tr>
+         
+          {% endfor %} 
+        </tbody>
+      </table>
+      {% else %}
+      <h2 class="alert alert-success">Aucun emprunt pour le moment</h2>
+      {% endif %}
+    </div>
+    <div class="col-md-5 mt-5">
+      <h3 class="text-center">Montant total des emprunts :</h3>
+      <h1 class="text-center"><span class=" badge badge-success">{{ totalEmprunt }} F cfa</span></h>
+    </div>
+  </div>
+</div>
+{% endblock %}

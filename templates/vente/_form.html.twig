@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+
+{{ form_row(form.prenomEmploye, {'label':'Prénom employé', 'attr':{'value':app.user.prenom, 'readonly':true
+
+}}) }}
+{{ form_row(form.nomEmploye, {'label':'Nom employé', 'attr':{'value':app.user.nom, 'readonly':true
+
+}}) }}
+
+{{ form_row(form.numEmploye, {'label':'Tel employé', 'attr':{'value':app.user.phone, 'readonly':true
+
+}}) }}
+{{ form_row(form.montant, {'label':'Montant initial', 
+'attr':{'value':0, 'readonly':true
+
+}}) }}
+
+<button class="btn btn-violet">{{ button_label|default('Ajouter') }}</button>
+{{ form_end(form) }}
